@@ -93,7 +93,6 @@ module Exercises
     else
       return false
     end
-
   end
 end
 
@@ -111,6 +110,52 @@ class RPS
   #
   # You will be using this class in the following class, which will let players play
   # RPS through the terminal.
+  attr_accessor :player1, :player2, :p1_wins
+
+  def initialize(player1, player2)
+    @player1 = player1
+    @player2 = player2
+    @p1_wins = 0
+    @p2_wins = 0
+  end
+
+  def play(move1, move2)
+    player = { move1 => @player1, move2 => @player2 }
+
+    if move1 == move2
+      return "tie"
+    elsif move1 == "rock"
+      if move2 == "paper"
+        return player[move2]
+        @p2_wins += 1
+      else
+        return player[move1]
+        @p1_wins += 1
+      end
+    elsif move1 == "paper"
+      if move2 == "scissors"
+        return player[move2]
+        @p2_wins += 1
+      else
+        return player[move1]
+        @p1_wins += 1
+      end
+    elsif move1 == "scissors"
+      if move2 == "rock"
+        return player[move2]
+        @p2_wins += 1
+      else
+        return player[move1]
+        @p1_wins += 1
+      end
+    end
+
+    if @p1_wins == 2
+      return "Player 1 wins"
+    elsif @p2_wins == 2
+      return "Player 2 wins"
+    end
+  end
 end
 
 

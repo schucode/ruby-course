@@ -97,8 +97,32 @@ describe "Exercises" do
       expect(Exercises.ex9(no_leap)).to eq(false)
     end
   end
-
 end
+
+describe "RPS" do
+  describe ".initialize" do
+    it "initializes with two player names as strings" do
+      rps = RPS.new("Jeremy", "Mark")
+      expect(rps.player1).to eq("Jeremy")
+      expect(rps.player2).to eq("Mark")
+    end
+  end
+
+  describe "play" do
+    it "should assign a move to each player" do
+      rps = RPS.new("Jeremy", "Mark")
+      expect(rps.play("rock", "paper")).to eq("Mark")
+    end
+    it "should give a winner" do
+      rps = RPS.new("Jeremy", "Mark")
+
+      rps.p1_wins = 1
+
+      expect(rps.play("rock", "scissors")).to eq("Player 1 Wins")
+    end
+  end
+end
+
 
 
 
