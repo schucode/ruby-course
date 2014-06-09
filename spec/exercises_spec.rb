@@ -23,4 +23,11 @@ describe "Exercises" do
     end
   end
 
+  describe ".ex3" do
+    it "should return the sum of the given array" do
+      array = [2, 4, 5, 1]
+      expect(Exercises.ex3(array)).to eq (12)
+    end
+  end
+
 end
