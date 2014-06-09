@@ -1,5 +1,5 @@
 require './exercises'
-# require 'pry-debugger'
+require 'pry-byebug'
 
 describe "Exercises" do
   describe ".ex0" do
@@ -49,10 +49,16 @@ describe "Exercises" do
   end
 
   describe ".ex6" do
-    it "change the last element in the array to panda" do
+    it "change the last element in the array to 'panda'" do
       array = ["boo", "blah", "mmm"]
       Exercises.ex6(array)
-      expect(Exercises.ex6(array.last)).to eq("panda")
+      expect(array.last).to eq("panda")
+    end
+
+    xit "changes last element to 'Godzilla' if already 'panda'" do
+      array = ["boo", "blah", "panda"]
+      Exercises.ex6(array)
+      expect(array.last).to eq("Godzilla")
     end
   end
 

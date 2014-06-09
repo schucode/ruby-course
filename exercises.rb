@@ -53,7 +53,11 @@ module Exercises
   #    it to 'GODZILLA' instead
   def self.ex6(array)
     # TODO
-    array[-1] = "panda"
+    if array[-1] == "panda"
+      array[-1] = "Godzilla"
+    else 
+      array[-1] = "panda"
+    end
   end
 
   # Exercise 7
