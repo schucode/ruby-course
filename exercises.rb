@@ -23,6 +23,7 @@ module Exercises
   #  - Returns the second element of an array
   def self.ex2(array)
     # TODO
+    return array[1]
   end
 
   # Exercise 3
