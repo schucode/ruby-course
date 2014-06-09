@@ -81,8 +81,21 @@ describe "Exercises" do
       expect(STDOUT).to receive(:puts).with("Bob: Builder")
       expect(STDOUT).to receive(:puts).with("Nick: Teacher")
       Exercises.ex8(people)
-
     end 
+  end
+
+  describe ".ex9" do
+    it "should return true if in leap year" do
+      leap = Time.new(2012)
+      Time.stub(:now).and_return(leap)
+      expect(Exercises.ex9(leap)).to eq(true)
+    end
+
+    it "should return false if not in leap year" do
+      no_leap = Time.new(2013)
+      Time.stub(:now).and_return(no_leap)
+      expect(Exercises.ex9(no_leap)).to eq(false)
+    end
   end
 
 end

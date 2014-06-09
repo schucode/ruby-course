@@ -87,6 +87,13 @@ module Exercises
   # Hint: Google for the wikipedia article on leap years
   def self.ex9(time)
     # TODO
+    t = Time.new(time.year)
+    if t.year == (t + (60*60*24*365)).year
+      return true
+    else
+      return false
+    end
+
   end
 end
 
