@@ -30,4 +30,12 @@ describe "Exercises" do
     end
   end
 
+  describe ".ex4" do
+    it "should return the maximum of the given array" do
+      array = [5, 7, 2, 9]
+      expect(Exercises.ex4(array)).to eq(9)
+      
+    end
+  end
+
 end
