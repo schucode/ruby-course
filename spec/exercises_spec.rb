@@ -34,7 +34,25 @@ describe "Exercises" do
     it "should return the maximum of the given array" do
       array = [5, 7, 2, 9]
       expect(Exercises.ex4(array)).to eq(9)
-      
+    end
+  end
+
+  describe ".ex5" do
+    it "should print each element" do
+      array = [23, 5, 6, 4]
+      expect(STDOUT).to receive(:puts).with(23)
+      expect(STDOUT).to receive(:puts).with(5)
+      expect(STDOUT).to receive(:puts).with(6)
+      expect(STDOUT).to receive(:puts).with(4)
+      Exercises.ex5(array)
+    end
+  end
+
+  describe ".ex6" do
+    it "change the last element in the array to panda" do
+      array = ["boo", "blah", "mmm"]
+      Exercises.ex6(array)
+      expect(Exercises.ex6(array.last)).to eq("panda")
     end
   end
 

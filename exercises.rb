@@ -44,6 +44,7 @@ module Exercises
   #  - Iterates through an array and `puts` each element
   def self.ex5(array)
     # TODO
+    array.each {|i| puts i }
   end
 
   # Exercise 6
@@ -52,6 +53,7 @@ module Exercises
   #    it to 'GODZILLA' instead
   def self.ex6(array)
     # TODO
+    array[-1] = "panda"
   end
 
   # Exercise 7
