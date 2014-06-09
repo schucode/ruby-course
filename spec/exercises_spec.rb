@@ -55,7 +55,7 @@ describe "Exercises" do
       expect(array.last).to eq("panda")
     end
 
-    xit "changes last element to 'Godzilla' if already 'panda'" do
+    it "changes last element to 'Godzilla' if already 'panda'" do
       array = ["boo", "blah", "panda"]
       Exercises.ex6(array)
       expect(array.last).to eq("Godzilla")
