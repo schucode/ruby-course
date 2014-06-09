@@ -62,4 +62,51 @@ describe "Exercises" do
     end
   end
 
+  describe ".ex7" do
+    it "should add a copy of the string to the end of array if string exists in array" do
+      a = ["word", "apple", "goose"]
+
+      Exercises.ex7(a, "astro")
+      expect(a.last).to eq("goose")
+
+      Exercises.ex7(a, "apple")
+      expect(a.last).to eq("apple")
+
+    end
+  end
+
+  describe ".ex8" do
+    it "should print name and occupation from hashes in array" do
+      people = [{:name => 'Bob', :occupation => 'Builder'}, {:name => 'Nick', :occupation => 'Teacher'}]
+      expect(STDOUT).to receive(:puts).with("Bob: Builder")
+      expect(STDOUT).to receive(:puts).with("Nick: Teacher")
+      Exercises.ex8(people)
+
+    end 
+  end
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
