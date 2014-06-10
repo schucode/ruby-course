@@ -110,7 +110,7 @@ class RPS
   #
   # You will be using this class in the following class, which will let players play
   # RPS through the terminal.
-  attr_accessor :player1, :player2, :p1_wins
+  attr_accessor :player1, :player2, :p1_wins, :p2_wins
 
   def initialize(player1, player2)
     @player1 = player1
@@ -122,38 +122,63 @@ class RPS
   def play(move1, move2)
     player = { move1 => @player1, move2 => @player2 }
 
-    if move1 == move2
-      return "tie"
-    elsif move1 == "rock"
-      if move2 == "paper"
-        return player[move2]
-        @p2_wins += 1
-      else
-        return player[move1]
-        @p1_wins += 1
-      end
-    elsif move1 == "paper"
-      if move2 == "scissors"
-        return player[move2]
-        @p2_wins += 1
-      else
-        return player[move1]
-        @p1_wins += 1
-      end
-    elsif move1 == "scissors"
-      if move2 == "rock"
-        return player[move2]
-        @p2_wins += 1
-      else
-        return player[move1]
-        @p1_wins += 1
-      end
-    end
 
-    if @p1_wins == 2
-      return "Player 1 wins"
-    elsif @p2_wins == 2
-      return "Player 2 wins"
+    if @p1_wins == 2 || @p2_wins == 2
+      "Starting new game"
+      @p1_wins = 0
+      @p2_wins = 0
+    else 
+      if move1 == move2
+        return "tie"
+      elsif move1 == "rock"
+        if move2 == "paper"
+          @p2_wins += 1
+          if @p2_wins == 2
+            "#{@player2} wins GAME!!"
+          else
+            "#{@player2} wins match."
+          end
+        else
+          @p1_wins +=1
+          if @p1_wins == 2
+            "#{@player1} wins GAME!!"
+          else
+            "#{@player1} wins match."
+          end
+        end
+      elsif move1 == "paper"
+        if move2 == "scissors"
+          @p2_wins += 1
+          if @p2_wins == 2
+            "#{@player2} wins GAME!!"
+          else
+            "#{@player2} wins match."
+          end
+        else
+          @p1_wins +=1
+          if @p1_wins == 2
+            "#{@player1} wins GAME!!"
+          else
+            "#{@player1} wins match."
+          end
+        end
+      elsif move1 == "scissors"
+        if move2 == "rock"
+          @p2_wins += 1
+          if @p2_wins == 2
+            "#{@player2} wins GAME!!"
+          else
+            "#{@player2} wins match."
+          end
+        else
+          @p1_wins +=1
+          if @p1_wins == 2
+            "#{@player1} wins GAME!!"
+          else
+            "#{@player1} wins match."
+          end
+        end
+      end
     end
   end
 end
@@ -180,6 +205,16 @@ class RPSPlayer
     #          what the player is typing! :D
     # This is also why we needed to require 'io/console'
     # move = STDIN.noecho(&:gets)
+    puts "Input Players Names"
+    player1 = gets.chomp
+    player2 = gets.chomp
+    game = RPS.new(player1, player2)
+    while true
+      puts "Enter a Move"
+      p1move = gets.chomp
+      p2move = gets.chomp
+      game.play(p1move, p2move)
+    end
   end
 end
 

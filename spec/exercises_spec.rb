@@ -111,14 +111,12 @@ describe "RPS" do
   describe "play" do
     it "should assign a move to each player" do
       rps = RPS.new("Jeremy", "Mark")
-      expect(rps.play("rock", "paper")).to eq("Mark")
+      expect(rps.play("rock", "paper")).to eq("Mark wins match.")
     end
     it "should give a winner" do
       rps = RPS.new("Jeremy", "Mark")
-
-      rps.p1_wins = 1
-
-      expect(rps.play("rock", "scissors")).to eq("Player 1 Wins")
+      expect(rps.play("rock", "scissors")).to eq("Jeremy wins match.")
+      expect(rps.play("rock", "scissors")).to eq("Jeremy wins GAME!!")
     end
   end
 end
