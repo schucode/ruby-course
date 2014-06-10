@@ -19,9 +19,9 @@ describe 'Task' do
 		expect(@task.description).to eq("doing stuff")
 	end
 
-	xit "should have a priority number" do
+	it "should have a priority number" do
 		p = @task.stub(:priority).and_return(10)
-		expect(@task.priority).and_return(10)
+		expect(@task.priority).to eq (10)
 	end
 
 	xit "should have a completion status associated with its id: true/false" do
