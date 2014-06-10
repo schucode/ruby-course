@@ -15,16 +15,9 @@ describe 'Project' do
   end
 
   it "must have an id" do
-  	task = TM::Task.new("mytask", "doing stuff", 1)
+  	task = TM::Task.new("mytask", "doing stuff", 1, @project)
   	i = task.stub(:id).and_return(34)
   	expect(task.id).to eq(34)
-  end
-
-  xit "should be able to create tasks and store them" do
-  	task = TM::Task.new("somename", "do stuff", 3)
-  	@project.stub(:make_task).and_return([task])
-  	@project.make_task
-  	expect(@project.get_incomplete_tasks).to eq([task])
   end
 
   xit "should be able to set tasks as completed by id" do

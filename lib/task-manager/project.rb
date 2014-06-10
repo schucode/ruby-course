@@ -10,6 +10,9 @@ class TM::Project #basically a collection of tasks
 		@@counter += 1
 	end
 
+	def new_test
+	end
+
 	def get_complete_tasks
 	end
 
