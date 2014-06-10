@@ -14,8 +14,9 @@ describe 'Project' do
   	expect(@project.name).to eq("project one")
   end
 
-  xit "must have an id" do
-  	i = @task.stub(:id).and_return(34)
+  it "must have an id" do
+  	task = TM::Task.new("mytask", "doing stuff", 1)
+  	i = task.stub(:id).and_return(34)
   	expect(task.id).to eq(34)
   end
 
