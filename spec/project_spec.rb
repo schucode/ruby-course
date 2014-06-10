@@ -20,11 +20,13 @@ describe 'Project' do
   	expect(task.id).to eq(34)
   end
 
-  xit "should be able to set tasks as completed by id" do
-  	#expect(@task).to receive(:complete, 3).and_return(false)
-  	task = TM::Task.new("somename", "do stuff", 3)
-  	task.stub(:id).and_return(23)
-  	@project.set_complete(23)
+  it "should be mark a test as complete using its task id" do
+  	task = TM::Task.new("mytask", "doing stuff", 1, @project)
+
+  	expect(@project).to receive(:completed).with(1) { 
+  			task.complete = true
+  	 }
+  	@project.completed(1)
   	expect(task.complete).to eq(true)
   end
 
@@ -38,4 +40,12 @@ describe 'Project' do
 	end
 
 end
+
+# #expect(@task).to receive(:complete, 3).and_return(false)
+  	# task = TM::Task.new("somename", "do stuff", 3, @project)
+  	# task.stub(:id).and_return(23)
+  	# @project.set_complete(23)
+  	# expect(task.complete).to eq(true)
+
+
 
