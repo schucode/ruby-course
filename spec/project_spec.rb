@@ -6,12 +6,12 @@ describe 'Project' do
     @project = TM::Project.new("project one")
   end
 
-  xit "exists" do
+  it "exists" do
     expect(TM::Project).to be_a(Class)
   end
 
-  xit "must have a name" do
-  	expect(project.name).to eq("project one")
+  it "must have a name" do
+  	expect(@project.name).to eq("project one")
   end
 
   xit "must have an id" do
