@@ -15,7 +15,7 @@ describe 'Task' do
   	expect(@task.id).to eq(4)
 	end
 
-	xit "should have a description" do
+	it "should have a description" do
 		expect(@task.description).to eq("doing stuff")
 	end
 

@@ -5,7 +5,7 @@ class TM::Task
 
 	def initialize(name, description, priority)
 		@name = name
-		@descrition = description
+		@description = description
 		@id = @@counter
 		@priority = priority
 		@complete = false
