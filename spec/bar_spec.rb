@@ -109,7 +109,8 @@ describe Bar do
   end
 
   context "During normal hours" do
-    # TODO: WRITE TESTS TO ENSURE BAR KNOWS NOT TO DISCOUNT
+    
+    
   end
 
   context "During happy hours" do
