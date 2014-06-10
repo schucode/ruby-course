@@ -11,24 +11,20 @@ describe 'Task' do
   end
 
   it "should have a project id" do
-
   	i = @task.stub(:id).and_return(4)
-  	expect(@task.id).to eq(i)
-
+  	expect(@task.id).to eq(4)
 	end
 
-	it "should have a description" do
+	xit "should have a description" do
 		expect(@task.description).to eq("doing stuff")
 	end
 
-	it "should have a priority number" do
-
+	xit "should have a priority number" do
 		p = @task.stub(:priority).and_return(10)
 		expect(@task.priority).and_return(10)
-
 	end
 
-	it "should have a completion status associated with its id: true/false" do
+	xit "should have a completion status associated with its id: true/false" do
 		expect(@task.complete).and_return(false)
 	end
 
