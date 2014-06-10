@@ -21,11 +21,11 @@ describe 'Task' do
 
 	it "should have a priority number" do
 		p = @task.stub(:priority).and_return(10)
-		expect(@task.priority).to eq (10)
+		expect(@task.priority).to eq(10)
 	end
 
-	xit "should have a completion status associated with its id: true/false" do
-		expect(@task.complete).and_return(false)
+	it "should have a completion status associated with its id: true/false" do
+		expect(@task.complete).to eq(false)
 	end
 
 end
