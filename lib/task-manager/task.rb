@@ -1,8 +1,7 @@
 
 class TM::Task 
-	attr_reader :description, :priority, :pro_id
-	attr_accessor :id, :pro_id, :done_status, :all_tasks, :create_time
-
+	attr_reader :description, :priority
+	attr_accessor :id, :pro_id, :done_status, :create_time
 
 	@@counter = 0
 	@@all_tasks = []
@@ -17,4 +16,9 @@ class TM::Task
 		@@all_tasks << self
 		@@counter += 1
 	end
+
+	def self.all_tasks
+		@@all_tasks
+	end
+
 end
