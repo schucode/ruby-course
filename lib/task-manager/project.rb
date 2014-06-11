@@ -39,11 +39,10 @@ class TM::Project #basically a collection of tasks
 				end
 			end
 		end
-
 		return array
 	end
 
 end
 
-# a < b => a before b
+
 
