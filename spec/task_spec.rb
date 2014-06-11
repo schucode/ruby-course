@@ -4,7 +4,7 @@ describe 'Task' do
   
 	before do
 		@project = TM::Project.new("coolproject")
-    @task = TM::Task.new("mytask", "doing stuff", 1, @project)
+    	@task = TM::Task.new("doing stuff", 1, @project)
   end
 
   it "exists" do

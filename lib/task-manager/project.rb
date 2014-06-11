@@ -10,7 +10,12 @@ class TM::Project #basically a collection of tasks
 		@@counter += 1
 	end
 
-	def new_test
+	def add_task(description, priority)
+		task = TM::Task.new(description, priority)
+		task.pro_id = @id
+	end
+
+	def completed(task_id)
 	end
 
 	def get_complete_tasks
@@ -20,3 +25,5 @@ class TM::Project #basically a collection of tasks
 	end
 
 end
+
+

@@ -1,16 +1,15 @@
 
 class TM::Task 
-	attr_reader :name, :description, :priority, :complete, :pro_id
+	attr_reader :description, :priority, :complete, :pro_id
 	attr_accessor :id, :complete
 
 
 	@@counter = 0
 	@@all_tasks = []
-	def initialize(name, description, priority, project)
-		@name = name
+	def initialize(description, priority, dummy)
 		@description = description
 		@id = @@counter
-		@pro_id = project.id
+		@pro_id = nil
 		@priority = priority
 		@complete = false
 		@@all_tasks << self

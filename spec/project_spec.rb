@@ -4,6 +4,7 @@ describe 'Project' do
 
 	before do
     @project = TM::Project.new("project one")
+    @task = TM::Task.new("doing stuff", 1, @project)
   end
 
   it "exists" do
@@ -15,22 +16,27 @@ describe 'Project' do
   end
 
   it "must have an id" do
-  	task = TM::Task.new("mytask", "doing stuff", 1, @project)
-  	i = task.stub(:id).and_return(34)
-  	expect(task.id).to eq(34)
+  	@task.stub(:id).and_return(34)
+  	expect(@task.id).to eq(34)
   end
 
-  it "should be mark a test as complete using its task id" do
-  	task = TM::Task.new("mytask", "doing stuff", 1, @project)
+  it "must be able to create/add a task" do 
+  	@project.add_task("do stuff", 2)
+    
+  	expect(Task.all_tasks.include?(task)).to eq(true)
+  end
 
-  	expect(@project).to receive(:completed).with(1) { 
-  			task.complete = true
-  	 }
+  xit "associate a created object with the project id" do
+
+  end
+
+  xit "should be mark a test as complete using its task id" do
   	@project.completed(1)
   	expect(task.complete).to eq(true)
   end
 
   xit "can retrieve a list of all complete tasks, sorted by creation date" do
+
   end
 
   xit "A project can retrieve a list of all incomplete tasks, sorted by priority" do
