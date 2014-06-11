@@ -3,8 +3,7 @@ require 'spec_helper'
 describe 'Project' do
 
 	before do
-    @project = TM::Project.new("project one")
-    @task = TM::Task.new("doing stuff", 1, @project)
+    @project = TM::Project.new("myproject")
   end
 
   it "exists" do
@@ -12,45 +11,73 @@ describe 'Project' do
   end
 
   it "must have a name" do
-  	expect(@project.name).to eq("project one")
+  	expect(@project.name).to eq("myproject")
   end
 
   it "must have an id" do
-  	@task.stub(:id).and_return(34)
-  	expect(@task.id).to eq(34)
+  	expect(@project.id).to eq(2)
   end
 
-  it "must be able to create/add a task" do 
-  	@project.add_task("do stuff", 2)
-  	expect(Task.all_tasks.include?(task)).to eq(true)
+  it "must create tasks with project id, description, and priority number" do
+    TM::Task.stub(:all_tasks).and_return([])
+
+    task = @project.add_task("do stuff", 4)
+
+    expect(task.pro_id).to eq(@project.id)
+    expect(task.description).to eq("do stuff")
+    expect(task.priority).to eq(4)
+    expect(TM::Task.all_tasks.length).to eq(1)
   end
 
-  xit "associate a created object with the project id" do
+  it "it must mark off tasks as completed" do
+    TM::Task.stub(:all_tasks).and_return([])
 
+    task = @project.add_task("do stuff", 4)
+
+    expect(task.done_status).to eq(false)
+    @project.finish_task(task.id)
+    expect(task.done_status).to eq(true)
   end
 
-  xit "should be mark a test as complete using its task id" do
-  	@project.completed(1)
-  	expect(task.complete).to eq(true)
+  it "list completed tasks, sorted by creation date" do
+    TM::Task.stub(:all_tasks).and_return([])
+
+    task_one = @project.add_task("do stuff", 4)
+    task_two = @project.add_task("do more stuff", 4)
+    task_three = @project.add_task("do other stuff", 4)
+    task_four = @project.add_task("nap", 4)
+
+    expect(@project.get_complete_tasks).to eq([])
+
+    @project.finish_task(task_one.id)
+    @project.finish_task(task_two.id)
+    @project.finish_task(task_four.id)
+
+    task_four.stub(:create_time).and_return(Time.new(2012))
+    task_two.stub(:create_time).and_return(Time.new(2013))
+    task_one.stub(:create_time).and_return(Time.new(2014))
+
+    expect(@project.get_complete_tasks).to eq([task_four, task_two, task_one])
   end
 
-  xit "can retrieve a list of all complete tasks, sorted by creation date" do
+  it "lists incomplete tasks, sorted by priority, then by age" do
+    TM::Task.stub(:all_tasks).and_return([])
 
+    task_one = @project.add_task("do stuff", 3)
+    task_two = @project.add_task("do more stuff", 4)
+    task_three = @project.add_task("do other stuff", 3)
+    task_four = @project.add_task("nap", 2)
+    task_five = @project.add_task("golf", 1)
+
+    task_one.stub(:create_time).and_return(Time.new(2013))
+    task_three.stub(:create_time).and_return(Time.new(2012))
+
+    @project.finish_task(task_two.id)
+
+    expect(@project.get_incomplete_tasks).to eq([task_five, task_four, task_three, task_one])  
   end
 
-  xit "A project can retrieve a list of all incomplete tasks, sorted by priority" do
-	end
 
-	xit "If two tasks have the same priority number, the older task gets priority" do
-	end
 
 end
-
-# #expect(@task).to receive(:complete, 3).and_return(false)
-  	# task = TM::Task.new("somename", "do stuff", 3, @project)
-  	# task.stub(:id).and_return(23)
-  	# @project.set_complete(23)
-  	# expect(task.complete).to eq(true)
-
-
 
