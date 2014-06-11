@@ -22,7 +22,6 @@ describe 'Project' do
 
   it "must be able to create/add a task" do 
   	@project.add_task("do stuff", 2)
-    
   	expect(Task.all_tasks.include?(task)).to eq(true)
   end
 
