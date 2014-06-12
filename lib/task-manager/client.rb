@@ -17,18 +17,13 @@ class TM::Client
   end
 
   def self.show_incomplete(project_id)
-     incomplete_tasks = TM::Task.all_tasks.select do |i| 
-       i.pro_id == project_id & i.done_status == false
-     end
-
-    incomplete_tasks.each { |i| puts i.description }
+    proj = TM::Project.all_projects.find { |i| i.id == project_id } 
+    proj.get_incomplete_tasks.each { |i| puts "id: #{i.id}, #{i.description}" }
   end
 
   def self.show_completed(project_id)
-    complete_tasks = TM::Task.all_tasks.select do |i| 
-      i.pro_id == project_id & i.done_status == false
-    end
-    complete_tasks.each { |i| puts i.description }
+    proj = TM::Project.all_projects.find { |i| i.id == project_id } 
+    proj.get_complete_tasks.each { |i| puts i.description }
   end
 
   def self.create_task(project_id, priority, description) 
@@ -36,39 +31,31 @@ class TM::Client
     proj.add_task(description, priority)
   end
 
-  def finished_task(task_id) 
+  def self.finished_task(task_id) 
     task = TM::Task.all_tasks.find {|i| i.id == task_id}
     proj = TM::Project.all_projects.find {|i| i.id == task.pro_id}
     proj.finish_task(task_id)
   end
 
-  def help
-    puts "help - Show these commands again"
-    puts "list - Provides a list of all projects"
-    puts "create P - Create a project named P"
-    puts "show P - Show tasks that have not been completed in project P"
-    puts "history P - Show task that have been completed in Project P"
-    puts "add P PRI D - add a task to project P with priority PRI and description D"
-    puts "finish T - Make task T as completed"
+  def self.help
+    puts ""
+    puts "  help - Show these commands again"
+    puts "  list - Provides a list of all projects"
+    puts "  create P - Create a project named P"
+    puts "  show P - Show tasks that have not been completed in project P"
+    puts "  history P - Show task that have been completed in Project P"
+    puts "  add P PRI D - add a task to project P with priority PRI and description D"
+    puts "  finish T - Make task T as completed"
+    puts ""
   end
 
-  self.clearOut()
+  self.clearOut
 
   puts "Welcome to the Task Manager!"
   puts "What would you like to do today?"
 
-  help
-  # help - Show these commands again
-#   xlist - List all projects
-#   xcreate NAME - Create a new project with name=NAME
-#   xshow PID - Show remaining tasks for project with id=PID
-#   history PID - Show completed tasks for project with id=PID
-#   xadd PID PRIORITY DESC - Add a new task to project with id=PID
-#   mark TID - Mark task with id=TID as complete
+  self.help
 
-
-  
-  
   user_input = nil
 
   while user_input != "exit" do
@@ -78,6 +65,7 @@ class TM::Client
 
     case input[0]
     when "help"
+      self.help
     when "list"
       puts "Here is a list of all the current projects: "
       self.show_projects
@@ -93,7 +81,6 @@ class TM::Client
       project_id = input[1].to_i
       self.show_completed(prject_id)
     when "add" 
-      puts "Adding task to project #{}"
       project = input[1].to_i
       priority = input[2].to_i
       description = input[3]
