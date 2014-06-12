@@ -2,11 +2,13 @@
 class TM::Project #basically a collection of tasks
 	attr_reader :name, :id
 
+	@@all_projects = []
 	@@counter = 0
 
 	def initialize(name)
 		@name = name
 		@id = @@counter
+		@@all_projects << self
 		@@counter += 1
 	end
 
@@ -14,7 +16,6 @@ class TM::Project #basically a collection of tasks
 		task = TM::Task.new(description, priority)
 		task.pro_id = @id
 		task.create_time = Time.now
-		TM::Task.all_tasks << task
 		return task
 	end
 
@@ -40,6 +41,22 @@ class TM::Project #basically a collection of tasks
 			end
 		end
 		return array
+	end
+
+	def self.all_projects
+		@@all_projects
+	end
+
+	def self.all_projects=(reset)
+		@@all_projects = reset
+	end
+
+	def self.counter
+		@@counter
+	end
+
+	def self.counter=(reset)
+		@@counter = reset
 	end
 
 end

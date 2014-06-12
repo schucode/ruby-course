@@ -21,4 +21,16 @@ class TM::Task
 		@@all_tasks
 	end
 
+	def self.all_tasks=(reset)
+		@@all_tasks = reset
+	end
+
+	def self.counter
+		@@counter
+	end
+
+	def self.counter=(reset)
+		@@counter = reset
+	end
+
 end
